@@ -1,0 +1,113 @@
+{% extends 'mysite/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<br>
+<div class="container mt-5 pt-5">
+    
+<table class="table table-dark mt-5 pt-5">
+    <thead>
+      <tr>
+        <th scope="col">Total items</th>
+        <th scope="col">Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{order.get_cart_items}}</td>
+        <td>{{order.get_cart_total|floatformat:2}}</td>
+      </tr>
+    </tbody>
+  </table>
+<table class="table table-dark mt-5 pt-5">
+    <thead>
+      <tr>
+        <th scope="col">Sr. No.</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for product in items %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{product.item.title}}</td>
+        <td>${{product.item.price|floatformat:2}}</td>
+        <td>
+            <a data-product={{product.item.id}} data-action="remove" class="update-cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+              </a>
+            {{product.quantity}}
+            <a data-product={{product.item.id}} data-action="add" class="update-cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </a>
+        </td>
+        <td>{{product.get_total|floatformat:2}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{%url 'mysite:checkout' %}" class="btn btn-lg btn-success">Checkout</a>
+  <div class="best-features" id="aboutus">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>About Lorem Ipsum</h2>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="left-content">
+            <h4>Looking for the best products?</h4>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas, tempore! Doloribus expedita ipsum enim assumenda, accusantium ut praesentium officia quis? Voluptates exercitationem deserunt corrupti magnam odit quos, quis voluptas ullam.</p>
+            <ul class="featured-list">
+              <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+              <li><a href="#">Consectetur an adipisicing elit</a></li>
+              <li><a href="#">It aquecorporis nulla aspernatur</a></li>
+              <li><a href="#">Corporis, omnis doloremque</a></li>
+              <li><a href="#">Non cum id reprehenderit</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="right-image">
+            <img src="{% static 'mysite/assets/images/feature-image.jpg' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="call-to-action" id="calltoaction">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="inner-content">
+            <div class="row">
+              <div class="col-md-8">
+                <h4>Creative &amp; Unique <em>Sixteen</em> Products</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis amet elite author nulla.</p>
+              </div>
+              <div class="col-md-4">
+                <a href="#" class="filled-button">Purchase Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+  {% endblock body_block %}
+
+
+

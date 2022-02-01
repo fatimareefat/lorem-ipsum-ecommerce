@@ -1,0 +1,18 @@
+{% extends 'mysite/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<br>
+<div class="row pt-5 mt-5">
+      <div class="col-md-12">
+        <img style="height: 350px;" src="{{ object.imageURL}}" alt="">
+      </div>
+      <div class="col-md-6">
+        <h1>{{ object.title }}</h1>
+        <h1>${{ object.price }}</h1>
+        <p>{{object.description}}</p>
+      </div>
+</div>  
+<button data-product={{object.id}} data-action="add" class="btn btn-outline-success add-btn update-cart">Add to Cart</button>
+{% endblock body_block %}
+

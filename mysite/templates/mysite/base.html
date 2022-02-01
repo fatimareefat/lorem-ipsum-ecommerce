@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Lorem Ipsum</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'mysite/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'mysite/assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'mysite/assets/css/templatemo-sixteen.css' %}">
+    <link rel="stylesheet" href="{% static 'mysite/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'mysite/css/style.css' %}">
+
+    <style>
+      .wrapper{
+        position: relative;
+      }
+      .wrapper span{
+        font-size:14px;
+        background: red;
+        border-radius:50%;
+        padding:3px;
+        position:relative;
+        left:-8px;
+        top:-10px;
+        opacity:0.9;
+      }
+    </style>
+    <script type="text/javascript">
+      var user = '{{request.user}}';
+
+      function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+      }
+      var csrftoken = getToken('csrftoken');
+
+
+      function getCookie(name){
+        // Split cookie string and get all indivisual name=value pairs in an array
+        var cookieArr = document.cookie.split(";");
+
+        //Loop throught the array elements
+        for(var i=0;i<cookieArr.length;i++){
+          var cookiePair = cookieArr[i].split("=");
+
+          /* Removing whitespace at the beginning of the cookie name 
+          and compare it with the given string */
+          if(name == cookiePair[0].trim()){
+            //Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+          }
+        }
+        //Return null if not found
+        return null;
+      }
+      var cart = JSON.parse(getCookie('cart'))
+      if (cart==undefined){
+        cart = {}
+        console.log('Cart was created!')
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+      }
+
+      console.log('Cart: ',cart)
+
+    </script>
+  </head>
+
+  <body>
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+      <div class="jumper">
+          <div></div>
+          <div></div>
+          <div></div>
+      </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <header class="">
+      <nav class="navbar navbar-expand-lg navbar-static">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'mysite:home' %}"><h2>Lorem <em>Ipsum</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#aboutus">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#calltoaction">Contact Us</a>
+              </li>
+              <li class="nav-item">
+                <div class="wrapper">
+                  <a class="nav-link" href="{% url 'mysite:cart' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-lg" viewBox="0 0 16 16">
+                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
+                    <span>{{cartItems}}</span>
+                  </a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
+                  </a>
+                
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  {% if user.is_authenticated %}
+                    <a class="dropdown-item" href="{% url 'mysite:logout' %}">Logout</a>
+                  {% else %}
+                    <a class="dropdown-item" href="{% url 'mysite:register' %}">Sign Up</a>
+                    <a class="dropdown-item" href="{% url 'mysite:login' %}">Login</a>
+                  {% endif %}
+                  </div>
+                </div>
+              </li>
+                  
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+    {% block body_block %}{% endblock body_block %}
+
+
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p>Made with ❤ by Famess</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <!--JS for cart functionalitites-->
+    <script src="{% static 'mysite/assets/js/cart.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'mysite/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'mysite/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="{% static 'mysite/assets/js/custom.js' %}"></script>
+    <script src="{% static 'mysite/assets/js/owl.js' %}"></script>
+    <script src="{% static 'mysite/assets/js/slick.js' %}"></script>
+    <script src="{% static 'mysite/assets/js/isotope.js' %}"></script>
+    <script src="{% static 'mysite/assets/js/accordions.js' %}"></script>
+
+
+    <script language = "text/Javascript"> 
+
+      $('.dropdown').mouseenter(function(){
+        if(!$('.navbar-toggle').is(':visible')) { // disable for mobile view
+            if(!$(this).hasClass('open')) { // Keeps it open when hover it again
+                $('.dropdown-toggle', this).trigger('click');
+            }
+        }
+      });
+    
+
+
+
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+  </body>
+
+</html>
