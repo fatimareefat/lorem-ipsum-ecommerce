@@ -27,7 +27,7 @@ Then install the dependencies:
 Note the `(env)` in front of the prompt. This indicates that this terminal
 session operates in a virtual environment set up by `virtualenv`.
 
-Once `pip` has finished downloading the dependencies:
+Once `pip` has finished downloading the dependencies, make sure you're in the folder having `manage.py` file and run:
 ```sh
 
 (env)$ python manage.py runserver
