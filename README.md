@@ -9,17 +9,21 @@ The first thing to do is to clone the repository:
 ```sh
 $ git clone https://github.com/fatimareefat/lorem-ipsum-ecommerce.git
 $ cd lorem-ipsum-ecommerce
+```
 
 Create a virtual environment to install dependencies in and activate it:
-```
+
+```sh
 	virtualenv env -p python3
 	source env/bin/activate
 ```
 
 Then install the dependencies:
-```
+
+```sh
 (env)$ pip install -r requirements.txt
 ```
+
 Note the `(env)` in front of the prompt. This indicates that this terminal
 session operates in a virtual environment set up by `virtualenv`.
 
